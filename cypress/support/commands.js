@@ -12,8 +12,9 @@
 
 
 
-// -- This is a parent command --
+// Trecho de código para preenchimento de formulário
 Cypress.Commands.add('preencherEEnviarFormulário', (email, password) => {
+
   cy.intercept('GET', '**/notes').as('getNotes')
   cy.visit('https://notes-serverless-app.com/signup')
   cy.get('#email').type(email)
@@ -32,7 +33,7 @@ Cypress.Commands.add('preencherEEnviarFormulário', (email, password) => {
 
 
 
-// Login Test
+// Trecho de código Login Test
 Cypress.Commands.add('guiLogin', (
   username = Cypress.env('USER_EMAIL'),
   password = Cypress.env('USER_PASSWORD')
@@ -56,7 +57,7 @@ Cypress.Commands.add('sessionLogin', (
 })
 
 
-// (creatNote)-> Comando para criação de uma nota de arquivo
+// (creatNote)-> Trecho de código criação de uma nota de arquivo
 const attachFileHandler = () => {
   cy.get('#file').selectFile('cypress/fixtures/example.json')
 }
@@ -74,7 +75,7 @@ Cypress.Commands.add('createNote', (note, attachFile = false) => {
   cy.contains('.list-group-item', note).should('be.visible')
 })
 
-// (editNote)-> Comando para edição de uma nota de arquivo criada
+// (editNote)-> Trecho de código edição de uma nota de arquivo criada
 Cypress.Commands.add('editNote', (note, newNoteValue, attachFile = false) => {
   cy.intercept('GET', '**/notes/**').as('getNote')
 
@@ -94,7 +95,7 @@ Cypress.Commands.add('editNote', (note, newNoteValue, attachFile = false) => {
   cy.contains('.list-group-item', note).should('not.exist')
 })
 
-// (deletNote)-> Comando para deleção de uma nota de arquivo
+// (deletNote)-> Trecho de código para deleção de uma nota de arquivo
 Cypress.Commands.add('deleteNote', note => {
   cy.contains('.list-group-item', note).click()
   cy.contains('button', 'Delete').click()
@@ -103,5 +104,37 @@ Cypress.Commands.add('deleteNote', note => {
   cy.contains('.list-group-item', note).should('not.exist')
 
 })
-// -- This will overwrite an existing command --
+
+// Cypress.Commands.add('logs out', () => {
+//   cy.visit('https://notes-serverless-app.com')
+//   cy.wait('@getNotes', { timeout: 40000 })
+// })
+
+
+// Trecho de código para simular compra utilizando cartão de crédito
+// cypress/support/commands.js
+
+
+Cypress.Commands.add('fillSettingsFormAndSubmit', () => {
+
+  cy.visit('https://notes-serverless-app.com/settings')
+  cy.get('#storage').type('1')
+  cy.get('#name').type('Magno Porto')
+  cy.iframe('.card-field iframe')
+    .as('iframe')
+    .find('[name="cardnumber"]')
+    .type('4242424242424242')
+  cy.get('@iframe')
+    .find('[name="exp-date"]')
+    .type('1271')
+  cy.get('@iframe')
+    .find('[name="cvc"]')
+    .type('123')
+  cy.get('@iframe')
+    .find('[name="postal"]')
+    .type('12345')
+  cy.contains('button', 'Purchase').click()
+})
+
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
