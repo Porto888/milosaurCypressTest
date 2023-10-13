@@ -8,7 +8,7 @@
     "test:tablet:cloud": "cypress run --record --tag 'tablet' --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Guilherme Porto",
   "license": "MIT",
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
