@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 
 import 'cypress-mailosaur'
 require('cypress-iframe')

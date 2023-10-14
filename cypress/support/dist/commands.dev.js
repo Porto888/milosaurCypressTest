@@ -1,5 +1,3 @@
-"use strict";
-
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -18,6 +16,7 @@ Cypress.Commands.add('preencherEEnviarFormulário', function (email, password) {
   cy.get('#email').type(email);
   cy.get('#password').type(password, {
     log: false
+    // eslint-disable-next-line semi
   });
   cy.get('#confirmPassword').type(password, {
     log: false
