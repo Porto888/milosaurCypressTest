@@ -10,9 +10,6 @@
 // ***********************************************
 //
 //
-
-
-
 // Trecho de código para preenchimento de formulário
 Cypress.Commands.add('preencherEEnviarFormulário', (email, password) => {
 

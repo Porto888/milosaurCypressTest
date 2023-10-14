@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 
 import 'cypress-mailosaur'
-require('cypress-iframe')
+require('cypress-iframe'),
 
 import './commands'
 
