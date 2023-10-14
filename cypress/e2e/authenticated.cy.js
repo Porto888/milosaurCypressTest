@@ -35,7 +35,7 @@ describe('Scenarios where authentication is a pre-condition', () => {
       .should('be.equal', 'Complete')
   })
 
-  it('logs out', { tags: '@desktop-and-tablet' }, () => {
+  it('logs out', () => {
     cy.visit('https://notes-serverless-app.com')
     cy.wait('@getNotes', { timeout: 40000 })
     if (Cypress.config('viewportWidth') < Cypress.env('viewportWidthBreakpoint')) {
