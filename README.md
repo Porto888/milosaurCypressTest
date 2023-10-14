@@ -28,7 +28,7 @@ Faça uma cópia do arquivo [`cypress.env.example.json`](./cypress.env.example.j
 
 Neste projeto, você pode executar testes nos modos interativo e headless, tanto em viewports de desktop quanto de tablets.
 
-### Modo sem headless
+### Modo headless
 
 Execute `npm test` (ou `npm t` para abreviar) para executar todos os testes no modo headless usando uma janela de visualização de desktop.
 
