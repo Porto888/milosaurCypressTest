@@ -1,3 +1,4 @@
+// Projeto de amostra para demonstrar testes e2e escritos com Cypress em execução no GitHub Actions.
 {
   "name": "testes-e2e-com-cypress",
   "version": "1.0.0",

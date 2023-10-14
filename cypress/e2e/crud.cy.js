@@ -1,7 +1,32 @@
 import { faker } from '@faker-js/faker/locale/en'
 
+/// <reference path="../support/commands.d.ts" />
 
-// Exemplo de codificção direta sem utilizar o arquivo commands
+// Exemplo de codificção utilizando o arquivo commands
+
+describe('CRUD', () => {
+  it('CRUDs a note', () => {
+    const noteDescription = faker.lorem.words(10)
+
+    cy.intercept('GET', '**/notes').as('getNotes')
+    cy.sessionLogin()
+
+    cy.createNote(noteDescription)
+    cy.wait('@getNotes')
+
+    const updateNoteDescription = faker.lorem.words(10)
+    const attachFile = true
+
+    cy.editNote(noteDescription, updateNoteDescription, attachFile)
+    cy.wait('@getNotes')
+
+    cy.deleteNote(updateNoteDescription)
+    cy.wait('@getNotes')
+
+  })
+})
+
+// Exemplo de codificção sem utilizar o arquivo commands
 
 // describe('CRUD', () => {
 //   it('CRUDs a note', () => {
@@ -46,27 +71,3 @@ import { faker } from '@faker-js/faker/locale/en'
 
 //   })
 // })
-
-// Exemplo de codificção direta utilizando o arquivo commands
-
-describe('CRUD', () => {
-  it('CRUDs a note', () => {
-    const noteDescription = faker.lorem.words(10)
-
-    cy.intercept('GET', '**/notes').as('getNotes')
-    cy.sessionLogin()
-
-    cy.createNote(noteDescription)
-    cy.wait('@getNotes')
-
-    const updateNoteDescription = faker.lorem.words(10)
-    const attachFile = true
-
-    cy.editNote(noteDescription, updateNoteDescription, attachFile)
-    cy.wait('@getNotes')
-
-    cy.deleteNote(updateNoteDescription)
-    cy.wait('@getNotes')
-
-  })
-})
