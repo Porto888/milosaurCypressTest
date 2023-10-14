@@ -6,3 +6,5 @@ import './commands'
 
 import registerCypressGrep from '@cypress/grep/src/support'
 registerCypressGrep()
+
+// Outros imports aqui.
